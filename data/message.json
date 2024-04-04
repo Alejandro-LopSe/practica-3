@@ -1,0 +1,86 @@
+[
+  {
+    "id": "347c01e1-aef9-4bba-422-9cc3caeb42a5",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "Hello, I'm interested in your product",
+    "createdAt": "2021-06-01T12:00:00.000Z"
+  },
+  {
+    "id": "347c01e1-aef9-4bba-a9229cc3caeb42a5",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "Hello, I'm interested in your product",
+    "createdAt": "2021-06-01T12:00:00.000Z"
+  },
+  {
+    "id": "347c01e1-aef9-4bba-a922-9cc3c1b42a5",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "Hello, I'm interested in your product",
+    "createdAt": "2021-06-01T12:00:00.000Z"
+  },
+  {
+    "id": "7981cdc4-5117-4d75-834e-e2954fa4ab74",
+    "createdAt": "2024-04-04T15:47:49.225Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "Hola"
+  },
+  {
+    "id": "5c9d42f5-dc80-4a4e-8ea5-45653471a6f8",
+    "createdAt": "2024-04-04T15:48:47.961Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "Que tal"
+  },
+  {
+    "id": "574a71c0-3b68-4850-a468-ab5eca343d30",
+    "createdAt": "2024-04-04T15:49:00.662Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "Y muy bien"
+  },
+  {
+    "id": "f1558f32-4370-49b9-a67f-6ddfc9d1bdfa",
+    "createdAt": "2024-04-04T15:53:11.190Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "aaa"
+  },
+  {
+    "id": "89ec4003-3f0d-4875-87ab-9e11502bfd3a",
+    "createdAt": "2024-04-04T15:53:12.725Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "aweawaw"
+  },
+  {
+    "id": "5420279a-1b28-46a6-a056-b628e4445636",
+    "createdAt": "2024-04-04T15:53:13.964Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "rewrmewre"
+  },
+  {
+    "id": "6c0eccd3-2820-48a2-a796-2121efbb172a",
+    "createdAt": "2024-04-04T15:53:15.111Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "rewrewr"
+  },
+  {
+    "id": "b0fe98aa-fde3-49ec-a13d-509e59d3589c",
+    "createdAt": "2024-04-04T15:53:24.388Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "rewre"
+  },
+  {
+    "id": "feaadd4f-e041-4aed-bce0-5f2aba5b26c8",
+    "createdAt": "2024-04-04T15:53:25.306Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "rewrew"
+  },
+  {
+    "id": "98fb6eb8-989d-4d6d-ab16-7d43f033aede",
+    "createdAt": "2024-04-04T15:53:26.589Z",
+    "idUser": "347c01e1-aef9-4bba-a922-9cc3caeb42a5",
+    "message": "rewrw"
+  },
+  {
+    "id": "65366583-d4f7-43c8-99dc-7df049d224ce",
+    "createdAt": "2024-04-04T15:59:01.534Z",
+    "idUser": "73b3e67b-2aaa-4d4b-be5e-22c9959e7aec",
+    "message": "Hl"
+  }
+]
