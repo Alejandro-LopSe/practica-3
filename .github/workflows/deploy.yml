@@ -29,6 +29,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "fernandomur-practica-3-212"
+          project: "alejandrolo-practica-3-17"
           entrypoint: "main.ts"
           root: "."
