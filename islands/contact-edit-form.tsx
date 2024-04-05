@@ -3,8 +3,8 @@ import { useState } from "preact/hooks";
 export default function EditContactForm(
   data: {
     id: string;
-    name: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     email: string;
     gender: string;
   },
@@ -12,12 +12,12 @@ export default function EditContactForm(
   const [formData, setFormData] = useState({
     name: {
       field: "name",
-      value: data.name,
+      value: data.first_name,
       error: "",
     },
     lastName: {
       field: "lastName",
-      value: data.lastName,
+      value: data.last_name,
       error: "",
     },
     email: {
@@ -32,9 +32,9 @@ export default function EditContactForm(
     },
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  let isValid = true;
   function validateForm() {
-    let isValid = true;
+    
     const newFormData = { ...formData };
     if (!newFormData.name.value) {
       newFormData.name.error = "Name is required";
@@ -52,19 +52,21 @@ export default function EditContactForm(
       newFormData.gender.error = "Gender is required";
     }
 
-    const emailRegex = /^[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s]+@+[^\s]+\.[^\s]+$/;
     if (!emailRegex.test(newFormData.email.value)) {
       newFormData.email.error = "Invalid email";
       isValid = false;
     }
 
-    setFormData(newFormData);
+
+      setFormData(newFormData);
+
   }
 
   function handleSubmit(e: any) {
     e.preventDefault();
     validateForm();
-    if (Object.values(formData).every((field) => field.value)) {
+    if (isValid) {
       fetch(`/api/contact?id=${data.id}`, {
         method: "PUT",
 

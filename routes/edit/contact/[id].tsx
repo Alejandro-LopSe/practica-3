@@ -9,7 +9,10 @@ export const handler: Handlers = {
       const response = await fetch(
         `http://localhost:8000/api/contact?id=${id}`,
       );
+      
+      
       const data = await response.json();
+      console.log(data);
       return _ctx.render(data);
     } catch (error) {
       return _ctx.render();

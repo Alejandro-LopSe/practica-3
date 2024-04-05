@@ -63,4 +63,18 @@ export const handler: Handlers = {
 
     return new Response("Message created", { status: 200 });
   },
+  async DELETE(request, _ctx) {
+    console.log(
+      `[DELETE] | from: ${_ctx.remoteAddr.hostname} | url: ${request.url}`,
+    );
+    
+
+
+     Deno.writeTextFileSync(
+      "./data/message.json",
+      JSON.stringify([], null, 2),
+    );
+
+    return new Response("Message created", { status: 200 });
+  },
 };

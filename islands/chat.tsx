@@ -37,6 +37,15 @@ export default function Chat({
         fetchMessages();
       });
   }
+  function cleanmesages() {
+    fetch(`/api/message?id=`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        setMessage("");
+        fetchMessages();
+      });
+  }
 
   useEffect(() => {
     fetchMessages();
@@ -45,24 +54,27 @@ export default function Chat({
   return (
     <div
       style={{
+        display: "flex",
         minHeight: "calc(100vh - 150px)",
         width: "100%",
         border: "1px solid #ccc",
         padding: "10px",
         borderRadius: "5px",
-        display: "flex",
+        overflow: "scroll",
         flexDirection: "column",
         justifyContent: "flex-end",
+
       }}
     >
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
+          overflow: "scroll",
+          paddingRight: "10px",
           gap: "10px",
           maxHeight: "calc(100vh - 200px)",
-          overflowY: "auto",
+
         }}
       >
         <div
@@ -73,9 +85,10 @@ export default function Chat({
             justifyContent: "flex-end",
             height: "100%",
             gap: "10px",
+
           }}
         >
-          {messages.map((m) => (
+          {messages.map((m) => {return (
             <div
               key={m.id}
               style={{
@@ -89,7 +102,7 @@ export default function Chat({
                 {new Date(m.createdAt).toLocaleString()}
               </div>
             </div>
-          ))}
+          )})}
         </div>
         {messages.length === 0 && (
           <div
@@ -106,6 +119,7 @@ export default function Chat({
       </div>
       <div
         style={{
+          
           display: "flex",
           flexDirection: "row",
           gap: "10px",
@@ -115,14 +129,20 @@ export default function Chat({
         <input
           type="text"
           value={message}
-          onKeyPress={(e) => {
+          onChange={(e) => {
+
+              setMessage(e.currentTarget.value);
+            
+          }}
+          onKeyUp={(e) => {
             if (e.key === "Enter") {
               sendMessage();
-            } else {
+            }else{
               setMessage(e.currentTarget.value);
             }
           }}
           style={{
+            
             width: "calc(100% - 50px)",
             padding: "5px",
             borderRadius: "5px",
@@ -138,6 +158,16 @@ export default function Chat({
           onClick={sendMessage}
         >
           Send
+        </button>
+        <button
+          style={{
+            padding: "5px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+          onClick={cleanmesages}
+        >
+          Clean
         </button>
       </div>
     </div>

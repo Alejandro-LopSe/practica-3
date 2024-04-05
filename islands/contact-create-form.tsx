@@ -24,9 +24,9 @@ export default function CreateContactForm() {
     },
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  let isValid = true;
   function validateForm() {
-    let isValid = true;
+    
     const newFormData = { ...formData };
     if (!newFormData.name.value) {
       newFormData.name.error = "Name is required";
@@ -44,19 +44,21 @@ export default function CreateContactForm() {
       newFormData.gender.error = "Gender is required";
     }
 
-    const emailRegex = /^[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s]+@+[^\s]+\.[^\s]+$/;
     if (!emailRegex.test(newFormData.email.value)) {
       newFormData.email.error = "Invalid email";
       isValid = false;
     }
 
-    setFormData(newFormData);
+      setFormData(newFormData);
+
+    
   }
 
   function handleSubmit(e: any) {
     e.preventDefault();
     validateForm();
-    if (Object.values(formData).every((field) => field.value)) {
+    if (isValid) {
       fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -77,6 +79,9 @@ export default function CreateContactForm() {
           setIsSubmitting(false);
         }
       });
+    }else {
+      alert("Failed to create contact");
+      setIsSubmitting(false);
     }
   }
 

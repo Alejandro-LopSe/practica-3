@@ -1,4 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
+import { Contact } from "../../islands/contact-list.tsx";
 
 export const handler: Handlers = {
   async GET(request, _ctx) {
@@ -9,10 +10,12 @@ export const handler: Handlers = {
 
     const data = await Deno.readTextFile("./data/contact.json");
 
+    
+
     if (url.searchParams.has("id")) {
       const id = url.searchParams.get("id");
       const contacts = JSON.parse(data);
-      const contact = contacts.find((c: any) => c.id === id);
+      const contact = contacts.find((c: Contact) => c.id === id);
       return new Response(JSON.stringify(contact), {
         headers: {
           "content-type": "application/json",
@@ -70,21 +73,29 @@ export const handler: Handlers = {
   },
   async DELETE(request, _ctx) {
     try {
-      console.log(
-        `[DELETE] | from: ${_ctx.remoteAddr.hostname} | url: ${request.url}`,
-      );
+
       const url = new URL(request.url);
       const id = url.searchParams.get("id");
+      console.log("id",id);
+      
 
       const data = await Deno.readTextFile("./data/contact.json");
 
       const contacts = JSON.parse(data);
 
-      const newContacts = contacts.filter((c: any) => c.id !== id);
-
+      const newContacts = contacts.filter((c: Contact) => {
+        console.log(c.id==id);
+        
+        if(c.id===id){
+          return false
+        }
+        return true
+      });
+      console.log(newContacts);
+      
       await Deno.writeTextFile(
         "./data/contact.json",
-        JSON.stringify(newContacts, null, 2),
+        JSON.stringify(newContacts),
       );
 
       return new Response("Contact deleted", { status: 200 });

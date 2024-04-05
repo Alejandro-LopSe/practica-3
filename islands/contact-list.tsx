@@ -1,16 +1,17 @@
 import { useSignal } from "@preact/signals";
 import { useEffect, useState } from "preact/hooks";
 
-type Contact = {
+export type Contact = {
   id: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   gender: string;
 };
 
 const ContactList = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [filter, setfilter] = useState<Contact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,6 +21,7 @@ const ContactList = () => {
       const response = await fetch("/api/contact");
       const data = await response.json();
       setContacts(data);
+      setfilter(data)
     } catch (e) {
       console.error(e);
       setError(e);
@@ -32,9 +34,12 @@ const ContactList = () => {
       const response = await fetch(`/api/contact?id=${id}`, {
         method: "DELETE",
       });
-      if (response.ok) {
+      if (response.status===200) {
         fetchContacts();
         alert("Contact deleted successfully");
+        return
+      }else{
+        alert("ERROR on deleted ");
       }
     } catch (e) {
       console.error(e);
@@ -44,13 +49,17 @@ const ContactList = () => {
 
   function searchContact(query: string) {
     const filteredContacts = contacts.filter((contact) => {
+      console.log
+      (contact.first_name.toLowerCase().includes(query.toLowerCase()) ||
+        contact.last_name.toLowerCase().includes(query.toLowerCase()) ||
+        contact.email.toLowerCase().includes(query.toLowerCase()))
       return (
-        contact.firstName.toLowerCase().includes(query.toLowerCase()) ||
-        contact.lastName.toLowerCase().includes(query.toLowerCase()) ||
+        contact.first_name.toLowerCase().includes(query.toLowerCase()) ||
+        contact.last_name.toLowerCase().includes(query.toLowerCase()) ||
         contact.email.toLowerCase().includes(query.toLowerCase())
       );
     });
-    setContacts(filteredContacts);
+    setfilter(filteredContacts);
   }
 
   useEffect(() => {
@@ -66,18 +75,19 @@ const ContactList = () => {
         placeholder="Search"
         class={"w-full"}
         onChange={(e) => searchContact(e.currentTarget.value)}
+        onBlur={(e) => searchContact(e.currentTarget.value)}
       />
       <div
         style={{
           padding: "0",
         }}
       >
-        {contacts.map((contact) => (
+        {filter.map((contact) => (
           <div key={contact.id} class={"contact w-full"}>
             <div class="flex flex-row space items-center">
               <div class="circle" />
               <div class="flex flex-col">
-                <div>{contact.firstName} {contact.lastName}</div>
+                <div>{contact.first_name} {contact.last_name}</div>
                 <div>{contact.email}</div>
               </div>
             </div>
@@ -90,8 +100,8 @@ const ContactList = () => {
               </a>
               <button
                 style={{ backgroundColor: "red", color: "white" }}
-                onClick={() =>
-                  deleteContact(contact.email)}
+                onClick={() =>{
+                  deleteContact(contact.id)}}
               >
                 Delete
               </button>
