@@ -67,7 +67,11 @@ const ContactList = () => {
         class={"w-full"}
         onChange={(e) => searchContact(e.currentTarget.value)}
       />
-      <ul>
+      <div
+        style={{
+          padding: "0",
+        }}
+      >
         {contacts.map((contact) => (
           <div key={contact.id} class={"contact w-full"}>
             <div class="flex flex-row space items-center">
@@ -94,7 +98,7 @@ const ContactList = () => {
             </div>
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
